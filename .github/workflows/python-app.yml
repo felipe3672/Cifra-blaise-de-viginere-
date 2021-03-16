@@ -1,0 +1,38 @@
+print("CRIPTOGRAFAR PALAVRAS NA CIFRA DE VIGENERE")
+
+
+
+op = 'N'
+while op !='S':
+    texto = input("\nDigite uma palavra ou frase para ser codificada: ").upper().replace(" ","")  
+    if(len(texto)>128):
+       print("Numero de caracteres excedeu o maximo")
+       op = input("Digite 'S' para sair ou outra tecla para continuar: ").upper()
+    else:
+        chave = input("Digite alguma palavra para ser chave de codificação: ").upper()
+        if(len(chave)>len(texto)):
+           print("ERRO!!!!! A chave é maior que a palavra. Recomeçe o programa!!!")
+           op = input("\nDigite 'S' para sair ou outra tecla para contuinuar: ").upper()
+        else:
+            chavecrip = ""
+            while len (texto)/len(chave) >=1:
+                chave = chave + chave
+            for i in range(len(texto)):
+                chavecrip=chavecrip+chr(65+(ord(texto[i])+ord(chave[i]))%26)
+            print("A palavra criptografada é: ",chavecrip)   
+            op = input("\nDigite 'S' para sair ou qualquer tecla para continuar: ").upper()
+            if op == 'S':
+                break
+            else:
+                texto = input("\nDigite a palavra codificada para ser decodificada: ").upper()
+                chavedescrip = ""
+                while len (texto)/len(chave) >=1:
+                    chave = chave - chave
+                for i in range(len(texto)):
+                    chavedescrip = chavedescrip+chr(65+(ord(texto[i])-ord(chave[i]))%26)
+                print("A palavra descriptografada é: ", chavedescrip)
+                op = input("\nDigite 'S' para sair ou qualquer tecla para criptografar outra palavra: ").upper()
+        
+                
+    
+
